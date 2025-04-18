@@ -3,6 +3,7 @@ package provider
 import (
 	"context"
 
+	"github.com/TheGrizzlyDev/yuba/internal/provider/str"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/ephemeral"
 	"github.com/hashicorp/terraform-plugin-framework/function"
@@ -44,7 +45,10 @@ func (p *ScaffoldingProvider) DataSources(ctx context.Context) []func() datasour
 }
 
 func (p *ScaffoldingProvider) Functions(ctx context.Context) []func() function.Function {
-	return []func() function.Function{}
+	return []func() function.Function{
+		str.NewPadLeft,
+		str.NewPadRight,
+	}
 }
 
 func New(version string) func() provider.Provider {
